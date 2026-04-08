@@ -36,7 +36,7 @@ export default function AdminBookings() {
   const totalRevenue = bookings.length * 2000;
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/booking")
+    axios.get("http://localhost:5002/api/booking")
       .then(res => setBookings(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -46,7 +46,7 @@ export default function AdminBookings() {
     if(!confirm("Delete this booking?")) return;
 
     try{
-      await axios.delete(`http://localhost:5000/api/booking/${id}`);
+      await axios.delete(`http://localhost:5002/api/booking/${id}`);
       setBookings(bookings.filter(b => b._id !== id));
     }
     catch{

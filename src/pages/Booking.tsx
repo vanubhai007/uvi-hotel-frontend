@@ -69,7 +69,7 @@ export default function Booking() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/booking",
+        "http://localhost:5002/api/booking",
         payload
       );
 
