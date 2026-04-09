@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const BASE_URL = "https://uvi-hotel-backend.onrender.com";
 import { Button } from "@/components/ui/button";
 
 export default function Booking() {
@@ -68,25 +69,25 @@ export default function Booking() {
     };
 
     try {
-      const res = await axios.post(
-        "http://localhost:5002/api/booking",
-        payload
-      );
+  const res = await axios.post(
+    `${BASE_URL}/api/booking`,
+    payload
+  );
 
-      console.log("Saved:", res.data);
+  console.log("Saved:", res.data);
 
-      navigate("/booking/success", {
-        state: {
-          reservationId: res.data?._id || "CONFIRMED",
-          ...payload,
-        },
-      });
-    } catch (err) {
-      console.error(err);
-      alert("❌ Booking failed. Backend not reachable.");
-    } finally {
-      setSubmitting(false);
-    }
+  navigate("/booking/success", {
+    state: {
+      reservationId: res.data?._id || "CONFIRMED",
+      ...payload,
+    },
+  });
+} catch (err) {
+  console.error(err);
+  alert("❌ Booking failed. Backend not reachable.");
+} finally {
+  setSubmitting(false);
+}
   };
 
   return (
